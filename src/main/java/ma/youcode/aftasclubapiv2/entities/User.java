@@ -19,6 +19,8 @@ import java.util.List;
 @AllArgsConstructor
 public class User extends AbstractEntity {
     private String name;
+    private String email;
+    private String password;
     private String familyName;
     private LocalDate accessionDate;
     private String nationality;
