@@ -42,4 +42,6 @@ public class UserResponse extends AbstractResponse {
 //    private List<Hunting> huntsList;
 
 //    private List<Ranking> rankings;
+
+
 }

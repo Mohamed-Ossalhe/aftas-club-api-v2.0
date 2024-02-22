@@ -4,8 +4,8 @@ import jakarta.validation.Valid;
 import ma.youcode.aftasclubapiv2.dto.requests._Request;
 import ma.youcode.aftasclubapiv2.dto.responses._Response;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 
