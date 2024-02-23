@@ -6,7 +6,6 @@ import ma.youcode.aftasclubapiv2.entities._Entity;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.ParameterizedType;
@@ -62,5 +61,5 @@ public abstract class AbstractMapper<ID, Request extends _Request, Response exte
                 .getActualTypeArguments()[2];
         assert _response != null;
         return page.map(p -> mapper.map(p, _response));
-    };
+    }
 }
