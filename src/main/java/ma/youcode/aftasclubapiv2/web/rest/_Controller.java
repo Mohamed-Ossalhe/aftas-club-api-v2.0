@@ -10,23 +10,28 @@ import ma.youcode.aftasclubapiv2.entities._Entity;
 import ma.youcode.aftasclubapiv2.exceptions.ResourceNotCreatedException;
 import ma.youcode.aftasclubapiv2.mapper._Mapper;
 import ma.youcode.aftasclubapiv2.services._Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @Getter
-@RestController
+@Validated
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(force = true)
 public class _Controller<ID, Request extends _Request, Response extends _Response<ID>, Service extends _Service<ID, Request, Response>> {
 
     public Service _service;
 
+    // TODO: fix this issue of multiple beans
+    @Autowired
     public void setService(Service service) {
         this._service = service;
     }
