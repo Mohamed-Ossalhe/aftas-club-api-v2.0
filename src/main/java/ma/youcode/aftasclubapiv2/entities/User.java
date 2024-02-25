@@ -1,10 +1,7 @@
 package ma.youcode.aftasclubapiv2.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import ma.youcode.aftasclubapiv2.enums.IdentityDocumentType;
 import ma.youcode.aftasclubapiv2.enums.UserRole;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,6 +14,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@Builder
 @Entity
 @NoArgsConstructor
 @Table(name = "_user")
