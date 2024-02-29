@@ -35,7 +35,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public AuthenticationResponse register(UserRequest request) {
-        return createNewUser(request, UserRole.MEMBER);
+        return createNewUser(request, UserRole.valueOf(request.role()));
     }
 
     @Override
@@ -87,6 +87,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
+                .email(savedUser.getEmail())
+                .username(savedUser.getName())
+                .role(String.valueOf(savedUser.getRole()))
                 .build();
     }
 
@@ -120,6 +123,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
+                .email(user.getEmail())
+                .username(user.getName())
+                .role(String.valueOf(user.getRole()))
                 .build();
     }
 

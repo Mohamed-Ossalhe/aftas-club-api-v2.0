@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Service
 public class JwtService {
@@ -64,13 +63,6 @@ public class JwtService {
         List<String> roles = userDetails.getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority)
-                .filter(authority -> authority.startsWith("ROLE_"))
-                .toList();
-
-        List<String> permissions = userDetails.getAuthorities()
-                .stream()
-                .map(GrantedAuthority::getAuthority)
-                .filter(authority -> !authority.startsWith("ROLE_"))
                 .toList();
 
         return Jwts
@@ -80,7 +72,6 @@ public class JwtService {
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 .claim("roles", roles)
-                .claim("permissions", permissions)
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }

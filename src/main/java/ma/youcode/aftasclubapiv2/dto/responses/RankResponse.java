@@ -13,4 +13,5 @@ import ma.youcode.aftasclubapiv2.entities.embedded.RankId;
 public class RankResponse implements _Response<RankId> {
     private Integer rank;
     private Integer score;
+    private UserResponse user;
 }

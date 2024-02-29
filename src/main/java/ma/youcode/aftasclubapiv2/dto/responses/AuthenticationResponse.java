@@ -34,4 +34,16 @@ public class AuthenticationResponse implements Serializable {
     @NotBlank(message = "Refresh token is required")
     @JsonProperty("refresh_token")
     private String refreshToken;
+
+    @NotBlank(message = "Username is required")
+    @JsonProperty("username")
+    public String username;
+
+    @NotBlank(message = "Email is required")
+    @JsonProperty("email")
+    public String email;
+
+    @NotBlank(message = "Role is required")
+    @JsonProperty("role")
+    public String role;
 }

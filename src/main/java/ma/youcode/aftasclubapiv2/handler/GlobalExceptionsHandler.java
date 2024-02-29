@@ -1,10 +1,8 @@
 package ma.youcode.aftasclubapiv2.handler;
 
-import ma.youcode.aftasclubapiv2.exceptions.ResourceNotCreatedException;
-import ma.youcode.aftasclubapiv2.exceptions.ResourceNotFoundException;
+import ma.youcode.aftasclubapiv2.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -53,5 +51,39 @@ public class GlobalExceptionsHandler {
     public ResponseEntity<ErrorResponse> handleResourceNotCreatedException(ResourceNotCreatedException exception) {
         ErrorResponse errorResponse = ErrorResponse.create(exception, HttpStatus.CONFLICT, exception.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
+    }
+
+    /**
+     *
+     * @param exception {@link TimeExpiredException}
+     * @return
+     */
+    @ExceptionHandler(TimeExpiredException.class)
+    public ResponseEntity<ErrorResponse> handleTimeExpiredException(TimeExpiredException exception) {
+        ErrorResponse errorResponse = ErrorResponse.create(exception, HttpStatus.BAD_REQUEST, "Time Expired: " + exception.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    /**
+     *
+     * @param exception {@link MaxLimitsExceedException}
+     * @return
+     */
+    @ExceptionHandler(MaxLimitsExceedException.class)
+    public ResponseEntity<ErrorResponse> handleMaxLimitsException(MaxLimitsExceedException exception) {
+        ErrorResponse errorResponse = ErrorResponse.create(exception, HttpStatus.BAD_REQUEST, "Max Limits Exceed: " + exception.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+
+    /**
+     *
+     * @param exception {@link UnsupportedActionException}
+     * @return
+     */
+    @ExceptionHandler(UnsupportedActionException.class)
+    public ResponseEntity<ErrorResponse> handleUnsupportedActionException(UnsupportedActionException exception) {
+        ErrorResponse errorResponse = ErrorResponse.create(exception, HttpStatus.BAD_REQUEST, "Unsupported Action: " + exception.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 }
